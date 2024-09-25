@@ -17,6 +17,10 @@ public class DashboardPage extends BasePage{
     @FindBy(className = "oxd-userdropdown-link")
     List<WebElement> optionsDropdown;
 
+    @FindBy(css = ".oxd-text.oxd-text--span.oxd-main-menu-item--name")
+    List<WebElement> itemsMenu;
+
+
     public DashboardPage (WebDriver driver){
         super(driver);
     }
@@ -31,13 +35,22 @@ public class DashboardPage extends BasePage{
         return userImg.isDisplayed();
     }
 
-    public void selectOption(String optionTxt) {
+    public void selectOption(String optionName) {
         for (WebElement option : optionsDropdown) {
-            if (option.getText().equals(optionTxt)){
+            if (option.getText().equals(optionName)){
                 option.click();
                 break;
             }
         }
     }
 
+    public EmployeeListPage selectItemMenu(String itemName) {
+        for (WebElement item : itemsMenu) {
+            if (item.getText().equals(itemName)){
+                item.click();
+                return new EmployeeListPage(driver);
+            }
+        }
+        return null;
+    }
 }

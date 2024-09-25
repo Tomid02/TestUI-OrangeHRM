@@ -13,17 +13,19 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.qaautomation.pages.DashboardPage;
+import org.qaautomation.pages.EmployeeListPage;
 import org.qaautomation.pages.LoginPage;
 
 import java.time.Duration;
 
 public class LoginSteps {
-    WebDriver driver ;
+    public static WebDriver driver ;
     LoginPage loginPage;
     public static DashboardPage dashboardPage;
+    public static EmployeeListPage employeeListPage;
 
 
-    public LoginSteps(WebDriver driver) {
+    public LoginSteps() {
     }
 
     @Given("the user is on the login page of OrangeHRM")
@@ -57,6 +59,11 @@ public class LoginSteps {
     @And("the user clicks the login button")
     public void theUserClickTheLoginBtn(){
         dashboardPage = this.loginPage.clickLoginButton();
+    }
+
+    @When("the user enters the PIM module")
+    public void theUserEntersPimModule(){
+        employeeListPage = dashboardPage.selectItemMenu("PIM");
     }
 
     @Then("the user should be logged in")

@@ -2,21 +2,19 @@ package org.qaautomation.stepdefinitions;
 
 
 import io.cucumber.java.After;
-import io.cucumber.java.en.And;
 
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import org.qaautomation.pages.LoginPage;
-
 import static org.qaautomation.stepdefinitions.LoginSteps.dashboardPage;
+import static org.qaautomation.stepdefinitions.LoginSteps.driver;
 
 
 public class LogoutSteps {
-    WebDriver driver;
-    LoginPage loginPage;
+    LoginPage loginPage = new LoginPage(driver);
 
-    @And("The user displays the menu and clicks on the {string} option.")
+    @When("The user displays the menu and clicks on the {string} option.")
     public void theUserDisplaysTheMenuAndClicksOnTheOption(String option) {
         dashboardPage.openUserDropdown();
         dashboardPage.selectOption(option);
