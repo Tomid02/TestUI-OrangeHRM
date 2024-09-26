@@ -1,8 +1,5 @@
 package org.qaautomation.stepdefinitions;
 
-
-import io.cucumber.java.After;
-
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -23,13 +20,5 @@ public class LogoutSteps {
     @Then("the user should be redirected to the login page")
     public void theUserShouldBeRedirectedToTheLoginPage() {
         Assert.assertTrue("[WARNING] No fue redirigido a la pagina de Login", loginPage.isOnLoginPage());
-    }
-
-    @After
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-            System.out.println("Navegador cerrado despues del escenario");
-        }
     }
 }

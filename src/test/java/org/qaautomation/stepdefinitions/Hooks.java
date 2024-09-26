@@ -2,11 +2,10 @@ package org.qaautomation.stepdefinitions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.openqa.selenium.WebDriver;
+
+import static org.qaautomation.stepdefinitions.LoginSteps.driver;
 
 public class Hooks {
-    WebDriver driver;
-
     @Before("@LogoutOk")
     public void loginBeforelogout() {
         LoginSteps loginSteps = new LoginSteps();
@@ -16,22 +15,23 @@ public class Hooks {
         loginSteps.userLoggedIn();
     }
 
-    @Before("@DeleteEmployeeOk")
+    @Before("@beforeOpenPIM")
     public void loginBeforeDeleteEmployye() {
         LoginSteps loginSteps = new LoginSteps();
+        OpenPIMModuleSteps openPIMModuleSteps = new OpenPIMModuleSteps();
         loginSteps.theUserIsOnTheLoginPageOfOrangeHRM();
         loginSteps.theUserEntersValidsCredentials("Admin", "admin123");
         loginSteps.theUserClickTheLoginBtn();
         loginSteps.userLoggedIn();
-        loginSteps.theUserEntersPimModule();
+        openPIMModuleSteps.theUserEntersPimModule();
+        openPIMModuleSteps.userShouldRedirectedPIMPage();
     }
 
-    @After("@testRegresion")
+    @After()
     public void tearDown() {
         if (driver != null) {
             driver.quit();
-            System.out.println("Navegador cerrado despues del escenario");
+            System.out.println("Navegador cerrado despues del escenario - Hooks");
         }
     }
-
 }

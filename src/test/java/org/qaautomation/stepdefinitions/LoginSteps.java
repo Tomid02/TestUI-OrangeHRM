@@ -1,6 +1,5 @@
 package org.qaautomation.stepdefinitions;
 
-import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,7 +12,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.qaautomation.pages.DashboardPage;
-import org.qaautomation.pages.EmployeeListPage;
 import org.qaautomation.pages.LoginPage;
 
 import java.time.Duration;
@@ -22,8 +20,6 @@ public class LoginSteps {
     public static WebDriver driver ;
     LoginPage loginPage;
     public static DashboardPage dashboardPage;
-    public static EmployeeListPage employeeListPage;
-
 
     public LoginSteps() {
     }
@@ -61,11 +57,6 @@ public class LoginSteps {
         dashboardPage = this.loginPage.clickLoginButton();
     }
 
-    @When("the user enters the PIM module")
-    public void theUserEntersPimModule(){
-        employeeListPage = dashboardPage.selectItemMenu("PIM");
-    }
-
     @Then("the user should be logged in")
     public void userLoggedIn(){
         Assert.assertTrue("[WARNING] Error al iniciar sessión", dashboardPage.isLoginSuccessful(40));
@@ -92,13 +83,4 @@ public class LoginSteps {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".oxd-text.oxd-text--span.oxd-input-field-error-message.oxd-input-group__message")));
         Assert.assertEquals("[WARNING] EL mensaje esperado no coincide con el actual", expectedMessage, loginPage.getRequiredText());
     }
-
-    @After
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-            System.out.println("Navegador cerrado despues del escenario");
-        }
-    }
-
 }

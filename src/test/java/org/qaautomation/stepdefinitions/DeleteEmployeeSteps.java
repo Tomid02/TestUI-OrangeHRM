@@ -1,16 +1,13 @@
 package org.qaautomation.stepdefinitions;
 
-import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 
-import static org.qaautomation.stepdefinitions.LoginSteps.employeeListPage;
+import static org.qaautomation.stepdefinitions.OpenPIMModuleSteps.employeeListPage;
 
 public class DeleteEmployeeSteps {
-    WebDriver driver;
 
     @When("the user clicks the delete button in the employee list")
     public void theUserClicksDeleteBtn(){
@@ -22,16 +19,8 @@ public class DeleteEmployeeSteps {
        employeeListPage.clickDeleteConfirmBtn();
     }
 
-    @Then("the user should see an alert with the message {string}")//Successfully Deleted
+    @Then("the user should see an alert with the message {string} indicating that the deletion was successful")//Successfully Deleted
     public void theUserShouldSeeAnAlert(String expectedMessage){
         Assert.assertEquals("[WARNIG] El mensaje no coincide con el esperado", expectedMessage, employeeListPage.getSuccessMessage(10));
-    }
-
-    @After
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-            System.out.println("Navegador cerrado despues del escenario");
-        }
     }
 }
