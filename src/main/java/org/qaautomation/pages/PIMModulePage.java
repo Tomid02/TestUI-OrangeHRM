@@ -8,13 +8,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class EmployeeListPage extends BasePage{
+public class PIMModulePage extends BasePage{
 
-    @FindBy(css = ".oxd-button.oxd-button--medium.oxd-button--secondary")
+    @FindBy(xpath = "//a[normalize-space()='Add Employee']")
     WebElement addBtn;
-
-    @FindBy(css = ".oxd-table-row.oxd-table-row--with-border.oxd-table-row--clickable")
-    WebElement employeeBtn;
 
     @FindBy(xpath = "//button/i[@class='oxd-icon bi-trash']")
     WebElement deleteEmployeeBtn;
@@ -28,7 +25,7 @@ public class EmployeeListPage extends BasePage{
     @FindBy(css = ".oxd-text.oxd-text--h6.oxd-topbar-header-breadcrumb-module")
     WebElement titleModule;
 
-    public EmployeeListPage(WebDriver driver) {
+    public PIMModulePage(WebDriver driver) {
         super(driver);
     }
 
@@ -48,16 +45,16 @@ public class EmployeeListPage extends BasePage{
         return successMessage.getText();
     }
 
-    public PersonalDetails clicksEmployeeBtn(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.elementToBeClickable(employeeBtn));
-        employeeBtn.click();
-        return new PersonalDetails(driver);
-    }
-
     public boolean isOnPIMModule(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(titleModule));
         return titleModule.isDisplayed();
+    }
+
+    public AddEmployeePage clicksAddEmployeeBtn(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.elementToBeClickable(addBtn));
+        addBtn.click();
+        return new AddEmployeePage(driver);
     }
 }

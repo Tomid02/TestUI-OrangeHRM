@@ -44,13 +44,18 @@ public class DashboardPage extends BasePage{
         }
     }
 
-    public EmployeeListPage selectItemMenu(String itemName) {
+    public PIMModulePage selectItemMenu(String itemName) {
         for (WebElement item : itemsMenu) {
             if (item.getText().equals(itemName)){
                 item.click();
-                return new EmployeeListPage(driver);
+                return new PIMModulePage(driver);
             }
         }
         return null;
+    }
+
+    public UpdatePasswordPage openUpdatePwdPage(){
+        selectOption("Change Password");
+        return new UpdatePasswordPage(driver);
     }
 }

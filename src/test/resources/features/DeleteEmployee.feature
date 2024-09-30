@@ -1,7 +1,7 @@
 @DeleteEmployeeTest@testRegresion
 Feature: Delete employee
 
-  @DeleteEmployeeOk@beforeOpenPIM
+  @DeleteEmployeeOk@OpenPiM
   Scenario: Successfully Deleted
     When the user clicks the delete button in the employee list
     And the user clicks the confirm delete button

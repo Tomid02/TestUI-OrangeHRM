@@ -46,7 +46,7 @@ public class LoginSteps {
 
     @When("the user enters valid credentials: username {string} and password {string}")
     public void theUserEntersValidsCredentials(String username, String password){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
         loginPage.enterUsername(username);
         loginPage.enterPassword(password);

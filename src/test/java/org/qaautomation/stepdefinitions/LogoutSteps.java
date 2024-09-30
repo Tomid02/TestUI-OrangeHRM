@@ -11,7 +11,7 @@ import static org.qaautomation.stepdefinitions.LoginSteps.driver;
 public class LogoutSteps {
     LoginPage loginPage = new LoginPage(driver);
 
-    @When("The user displays the menu and clicks on the {string} option.")
+    @When("the user displays the menu and clicks on the {string} option")
     public void theUserDisplaysTheMenuAndClicksOnTheOption(String option) {
         dashboardPage.openUserDropdown();
         dashboardPage.selectOption(option);

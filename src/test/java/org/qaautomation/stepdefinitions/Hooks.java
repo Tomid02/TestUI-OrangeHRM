@@ -6,8 +6,9 @@ import io.cucumber.java.Before;
 import static org.qaautomation.stepdefinitions.LoginSteps.driver;
 
 public class Hooks {
-    @Before("@LogoutOk")
-    public void loginBeforelogout() {
+
+    @Before("@BeforeLogin")
+    public void beforeLogin() {
         LoginSteps loginSteps = new LoginSteps();
         loginSteps.theUserIsOnTheLoginPageOfOrangeHRM();
         loginSteps.theUserEntersValidsCredentials("Admin", "admin123");
@@ -15,7 +16,7 @@ public class Hooks {
         loginSteps.userLoggedIn();
     }
 
-    @Before("@beforeOpenPIM")
+    @Before("@OpenPiM")
     public void loginBeforeDeleteEmployye() {
         LoginSteps loginSteps = new LoginSteps();
         OpenPIMModuleSteps openPIMModuleSteps = new OpenPIMModuleSteps();
@@ -31,7 +32,7 @@ public class Hooks {
     public void tearDown() {
         if (driver != null) {
             driver.quit();
-            System.out.println("Navegador cerrado despues del escenario - Hooks");
+            System.out.println("Navegador cerrado despues del escenario");
         }
     }
 }
